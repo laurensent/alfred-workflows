@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+
+# Claude Code
+.claude/
+CLAUDE.md

@@ -1,0 +1,21 @@
+name: Auto Release
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - '**/*.alfredworkflow'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Create Release
+      run: |
+        TAG="release-$(date +'%Y%m%d-%H%M%S')"
+        gh release create "$TAG" **/*.alfredworkflow --title "$TAG"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
