@@ -1,0 +1,64 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 7,
+      "subtext" : {
+        "size" : 12,
+        "colorSelected" : "#FBFFFFCC",
+        "font" : "System",
+        "color" : "#C6C6C6B2"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "System",
+        "color" : "#FFFFFFFF"
+      },
+      "backgroundSelected" : "#005DC3B3",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "System",
+        "color" : "#F4F9FFFF"
+      },
+      "iconPaddingHorizontal" : 8,
+      "roundness" : 14,
+      "paddingVertical" : 5,
+      "iconSize" : 35
+    },
+    "search" : {
+      "backgroundSelected" : "#B2D8FFE5",
+      "paddingHorizontal" : 8,
+      "spacing" : 5,
+      "text" : {
+        "size" : 25,
+        "colorSelected" : "#000000FF",
+        "font" : "System Light",
+        "color" : "#FFFFFFFF"
+      },
+      "background" : "#0E0E0EF9",
+      "roundness" : 10,
+      "paddingVertical" : 4
+    },
+    "window" : {
+      "color" : "#0E0E0EF9",
+      "paddingHorizontal" : 6,
+      "width" : 576,
+      "borderPadding" : 0,
+      "borderColor" : "#0000007F",
+      "blur" : 0,
+      "roundness" : 18,
+      "paddingVertical" : 7
+    },
+    "credit" : "laurensent",
+    "separator" : {
+      "color" : "#222424FF",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#561A72FF",
+      "thickness" : 2
+    },
+    "name" : "Pure Dark v4"
+  }
+}

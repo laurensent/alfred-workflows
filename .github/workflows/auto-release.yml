@@ -1,0 +1,29 @@
+name: Auto Release
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - '**/*.alfredworkflow'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Delete old releases
+      run: |
+        gh release list --limit 100 --json tagName -q '.[].tagName' | while read tag; do
+          echo "Deleting release: $tag"
+          gh release delete "$tag" --yes --cleanup-tag
+        done
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create Release
+      run: |
+        gh release create latest **/*.alfredworkflow --title "Latest"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

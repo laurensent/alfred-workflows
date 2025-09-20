@@ -1,0 +1,11 @@
+.DS_Store
+
+*.tmp
+*.log
+
+.claude/
+CLAUDE.md
+
+cmd/
+*/src/
+*/dist/
