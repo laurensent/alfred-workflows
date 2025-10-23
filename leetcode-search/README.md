@@ -28,3 +28,7 @@ Alfred workflow for searching LeetCode problems with local caching.
 Set workflow environment variables:
 - `UPDATE_DAYS` - Auto-update interval in days (default: 7)
 - `AUTO_UPDATE` - Enable auto-update (default: true)
+
+## Acknowledgments
+
+This workflow is inspired by [@JamesHopbourn](https://github.com/JamesHopbourn)'s [leetcode-alfred-workflow](https://github.com/JamesHopbourn/leetcode-alfred-workflow)

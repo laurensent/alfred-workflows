@@ -20,4 +20,4 @@ An Alfred workflow for resetting app privacy permissions on macOS.
 ## Requirements
 
 - Alfred with Powerpack
-- macOS with TCC (Transparency, Consent, and Control) support
+- macOS 10.14+
