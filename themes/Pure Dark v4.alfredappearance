@@ -31,7 +31,7 @@
       "paddingHorizontal" : 8,
       "spacing" : 5,
       "text" : {
-        "size" : 28,
+        "size" : 25,
         "colorSelected" : "#000000FF",
         "font" : "System Light",
         "color" : "#FFFFFFFF"
@@ -59,6 +59,6 @@
       "color" : "#561A72FF",
       "thickness" : 2
     },
-    "name" : "Pure Dark"
+    "name" : "Pure Dark v4"
   }
 }

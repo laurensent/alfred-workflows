@@ -1,0 +1,65 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 7,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#0096FFE6",
+        "font" : "System",
+        "color" : "#434343FF"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#000000FF",
+        "font" : "System",
+        "color" : "#313131FF"
+      },
+      "backgroundSelected" : "#F5FCFFFF",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#0096FFFF",
+        "font" : "System",
+        "color" : "#323232FF"
+      },
+      "iconPaddingHorizontal" : 8,
+      "roundness" : 8,
+      "paddingVertical" : 5,
+      "iconSize" : 35
+    },
+    "search" : {
+      "backgroundSelected" : "#FEFFFF00",
+      "paddingHorizontal" : 8,
+      "spacing" : 6,
+      "text" : {
+        "size" : 30,
+        "colorSelected" : "#247DFAFF",
+        "font" : "System Light",
+        "color" : "#313330FF"
+      },
+      "background" : "#FEFFFF00",
+      "roundness" : 8,
+      "paddingVertical" : 0
+    },
+    "window" : {
+      "color" : "#FEFFFF00",
+      "paddingHorizontal" : 5,
+      "width" : 582,
+      "borderPadding" : 0,
+      "borderColor" : "#0000007F",
+      "blur" : 0,
+      "roundness" : 12,
+      "paddingVertical" : 5
+    },
+    "credit" : "laurensent",
+    "visualEffectMode" : 1,
+    "separator" : {
+      "color" : "#222424FF",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#919191FF",
+      "thickness" : 0
+    },
+    "name" : "macOS Tahoe Light"
+  }
+}

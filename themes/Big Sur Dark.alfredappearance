@@ -1,0 +1,64 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 5,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#EFEFEFCB",
+        "font" : "System",
+        "color" : "#BCBCBC65"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#BCBCBC65",
+        "font" : "System Light",
+        "color" : "#BCBCBC65"
+      },
+      "backgroundSelected" : "#A9ADB566",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#FDFCFFFF",
+        "font" : "System",
+        "color" : "#FDFCFFFF"
+      },
+      "iconPaddingHorizontal" : 11,
+      "roundness" : 0,
+      "paddingVertical" : 6,
+      "iconSize" : 30
+    },
+    "search" : {
+      "backgroundSelected" : "#FEFFFE4C",
+      "paddingHorizontal" : 8,
+      "spacing" : 8,
+      "text" : {
+        "size" : 30,
+        "colorSelected" : "#FDFCFFFF",
+        "font" : "System Light",
+        "color" : "#FDFCFFFF"
+      },
+      "background" : "#00000000",
+      "roundness" : 0,
+      "paddingVertical" : 0
+    },
+    "window" : {
+      "color" : "#2626267F",
+      "paddingHorizontal" : 0,
+      "width" : 600,
+      "borderPadding" : 2,
+      "borderColor" : "#1C1C1C7F",
+      "blur" : 40,
+      "roundness" : 10,
+      "paddingVertical" : 8
+    },
+    "credit" : "Lauren Wong",
+    "separator" : {
+      "color" : "#CBCBCBF3",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#DAE0DA27",
+      "thickness" : 3
+    },
+    "name" : "Big Sur Dark"
+  }
+}
