@@ -12,8 +12,8 @@ Search LeetCode problems with fuzzy matching and smart caching.
 ## Usage
 - `lc [query]` - Search LeetCode CN
 - `lcm [query]` - Search LeetCode US
+- `lcupdate` - Force refresh cache
 - `Cmd+L` - Quick access via hotkey
-- `lcupdate` - View cache status or force update
 
 ## Search Examples
 - `88` or `two sum` - by number or title
@@ -23,7 +23,6 @@ Search LeetCode problems with fuzzy matching and smart caching.
 
 ## Configuration
 - Cache Update Interval: 1/3/6/12 months (default: 3)
-- Auto Update: Silent background refresh (default: on)
 
 ## Acknowledgments
 This workflow is inspired by [@JamesHopbourn](https://github.com/JamesHopbourn)'s [leetcode-alfred-workflow](https://github.com/JamesHopbourn/leetcode-alfred-workflow)
