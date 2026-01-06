@@ -17,6 +17,7 @@ Search bookmarks and history with fuzzy matching.
 bm [query]              # Search bookmarks
 bm #folder [query]      # Filter by folder
 bh [query]              # Search history
+bt [query]              # Search open tabs
 bmp                     # List profiles
 ```
 
@@ -24,10 +25,11 @@ bmp                     # List profiles
 
 | Key | Action |
 |-----|--------|
-| Enter | Open |
+| Enter | Open (activate tab if searching tabs) |
 | Cmd+Enter | Incognito |
 | Cmd+B | Bookmarks |
 | Cmd+H | History |
+| Option+T | Tabs |
 
 ## Settings
 
