@@ -2,6 +2,22 @@
 
 A collection of custom Alfred workflows to enhance your productivity on macOS.
 
+## Workflows
+
+| Workflow | Description |
+|----------|-------------|
+| [App Privacy Reset](app-privacy-reset/) | Reset app privacy permissions on macOS |
+| [BlitzSearch](blitzsearch/) | Real-time fuzzy file/folder search using fd + fzf |
+| [Browser Search](browser-search/) | Search bookmarks and history with fuzzy matching |
+| [Dropzone Launcher](dropzone-launcher/) | Launch Dropzone folders, apps, and actions |
+| [LeetCode Search](leetcode-search/) | Search LeetCode problems with fuzzy matching |
+| [Spotlight Ignore](spotlight-ignore/) | Manage macOS Spotlight exclusions |
+| [Textualize](textualize/) | One-click OCR and AI translation |
+
+## Themes
+
+Alfred appearance themes are available in the [themes](themes/) directory.
+
 ## Installation
 
 1. Download the `.alfredworkflow` file from the desired workflow directory
