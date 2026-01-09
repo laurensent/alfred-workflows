@@ -3,26 +3,31 @@
 Search LeetCode problems with fuzzy matching and smart caching.
 
 ## Features
-- Fuzzy search with smart ranking
-- Chinese tokenization (no spaces needed)
-- Multi-term search (order-insensitive)
+- Smart fuzzy search (multi-term, English/Chinese, order-insensitive)
+- Recent history (shows recently opened problems first)
 - Silent background cache refresh
-- Support for LeetCode CN and US
+- Support for LeetCode US and CN
 
 ## Usage
-- `lc [query]` - Search LeetCode CN
-- `lcm [query]` - Search LeetCode US
-- `lcupdate` - Force refresh cache
-- `Cmd+L` - Quick access via hotkey
+- `lcs [query]` - Search LeetCode problems
+  - `Enter` - Open problem description
+  - `Option+Enter` - Open solutions page
+- `lcsup` - Update cache (choose incremental or full)
+  - Incremental: Only fetch new problems (faster)
+  - Full: Refresh all problems with tags and companies
+- `Option+L` - Quick access via hotkey
 
 ## Search Examples
 - `88` or `two sum` - by number or title
 - `tsum` - fuzzy match "Two Sum"
-- `bst` - matches "Binary Search Tree"
-- `dp hard` - multi-term search
+- `#easy` (`#e`) / `#medium` (`#m`) / `#hard` (`#h`) - filter by difficulty
+- `#array`, `#dp`, `#tree` - filter by tag
+- `@google`, `@amazon` - filter by company
+- `#dp #hard @google` - combine filters
 
 ## Configuration
+- Default Site: US or CN (default: US)
 - Cache Update Interval: 1/3/6/12 months (default: 3)
 
-## Acknowledgments
-This workflow is inspired by [@JamesHopbourn](https://github.com/JamesHopbourn)'s [leetcode-alfred-workflow](https://github.com/JamesHopbourn/leetcode-alfred-workflow)
+## License
+MIT
