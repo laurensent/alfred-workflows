@@ -5,16 +5,30 @@ Real-time fuzzy file/folder search for Alfred using fd + fzf.
 ## Usage
 
 - `fs [query]` - Fuzzy search files and folders
-- `fs [query] #folder` - Filter by folder name with fuzzy matching (AND logic for multiple)
+- `fs [query] #folder` - Filter by folder name (fuzzy, AND logic for multiple)
+- `fs [query] @filter` - Filter by type (@h=hidden, @f=files, @d=dirs)
 - `fsh [query]` - Show recently opened files
 - `Shift` - Open enclosing folder
+
+## Type Filters (@)
+
+| Filter | Shortcut | Description |
+|--------|----------|-------------|
+| `@hidden` | `@h` | Only hidden files/folders (starting with `.`) |
+| `@files` | `@f` | Only files |
+| `@dirs` | `@d` | Only directories |
+
+Filters can be combined: `@hf` = hidden files only, `@hd` = hidden dirs only
 
 ## Examples
 
 ```
-fs readme              # Search for files containing "readme"
-fs config #dotfiles    # Search "config" in paths containing "dotfiles"
-fs test #src #utils    # Must match both "src" AND "utils" in path
+fs readme                  # Search for files containing "readme"
+fs config #dotfiles        # Search "config" in paths containing "dotfiles"
+fs test #src #utils        # Must match both "src" AND "utils" in path
+fs @h zshrc                # Search hidden files for "zshrc"
+fs @d #project config      # Search directories named "config" in project paths
+fs @hf bashrc              # Search hidden files only for "bashrc"
 ```
 
 ## Features
@@ -22,6 +36,8 @@ fs test #src #utils    # Must match both "src" AND "utils" in path
 - Real-time search using fd + fzf (no indexing required)
 - Fuzzy matching with typo tolerance (Levenshtein distance)
 - Smart ranking: exact > prefix > contains > fuzzy > subsequence
+- Type filters: hidden only, files only, dirs only
+- Folder filters with fuzzy matching (AND logic)
 - Search history with relative timestamps
 - Auto-cleanup of old history entries
 - Alfred Fallback Search support
@@ -37,6 +53,7 @@ fs test #src #utils    # Must match both "src" AND "utils" in path
 | Auto-delete After | `3` | Auto-delete history older than X months |
 | Fuzzy Tolerance | `3` | 1=strict, 5=lenient (controls typo tolerance) |
 | Exclude Patterns | `Library;.Trash;...` | Patterns to exclude (semicolon separated, supports glob) |
+| Include Hidden Files | `off` | Include hidden files/folders in search results by default |
 
 ## Requirements
 
