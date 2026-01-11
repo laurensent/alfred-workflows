@@ -52,7 +52,10 @@ fs test #src #utils        # Match both "src" AND "utils" in path
 fs @h zshrc                # Search hidden files for "zshrc"
 fs @d config               # Search directories only
 fs @hf bashrc              # Search hidden files only
+fs plist #library          # Search in Library (overrides exclude)
 ```
+
+**Tip:** Using `#folder` that matches an excluded pattern (e.g., `#library` matching `Library`) will temporarily override the exclusion, allowing you to search in normally excluded directories.
 
 ## Configuration
 
