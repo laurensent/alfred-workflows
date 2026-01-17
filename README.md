@@ -9,6 +9,7 @@ A collection of custom Alfred workflows to enhance your productivity on macOS.
 | [BlitzSearch](blitzsearch/) | Real-time fuzzy file/folder search using fd + fzf |
 | [Browser Search](browser-search/) | Search bookmarks and history with fuzzy matching |
 | [LeetCode Search](leetcode-search/) | Search LeetCode problems with fuzzy matching and smart caching |
+| [Textualize](textualize/) | One-click OCR and AI translation |
 
 ## Other Workflows
 
@@ -17,7 +18,6 @@ A collection of custom Alfred workflows to enhance your productivity on macOS.
 | [App Privacy Reset](app-privacy-reset/) | Reset app privacy permissions on macOS |
 | [Spotlight Ignore](spotlight-ignore/) | Manage macOS Spotlight exclusions |
 | [Dropzone Launcher](dropzone-launcher/) | Launch Dropzone folders, apps, and actions |
-| [Textualize](textualize/) | One-click OCR and AI translation |
 | [Finder Ghostty](finder-ghostty/) | Open current Finder path in Ghostty |
 | [GitHub Repos](github-repos/) | Search and open GitHub repositories |
 
