@@ -18,6 +18,8 @@ A collection of custom Alfred workflows to enhance your productivity on macOS.
 | [Spotlight Ignore](spotlight-ignore/) | Manage macOS Spotlight exclusions |
 | [Dropzone Launcher](dropzone-launcher/) | Launch Dropzone folders, apps, and actions |
 | [Textualize](textualize/) | One-click OCR and AI translation |
+| [Finder Ghostty](finder-ghostty/) | Open current Finder path in Ghostty |
+| [GitHub Repos](github-repos/) | Search and open GitHub repositories |
 
 ## Themes
 
