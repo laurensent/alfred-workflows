@@ -1,13 +1,11 @@
 # Finder Ghostty
 
-Switch between Finder and Ghostty terminal.
+Open current Finder path in Ghostty.
 
 ## Usage
 
-- `fg`: Finder -> Ghostty (open current Finder path in new Ghostty window)
-- `gf`: Ghostty -> Finder (open current Ghostty path in Finder)
+`fg`: Open current Finder path in new Ghostty window
 
 ## Notes
 
-- `fg`: If no Finder window is open, defaults to Desktop
-- `gf`: Automatically detects the most recently active Ghostty window when multiple windows are open
+If no Finder window is open, defaults to Desktop.
