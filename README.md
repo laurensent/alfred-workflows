@@ -23,6 +23,7 @@ A collection of custom Alfred workflows to enhance your productivity on macOS.
 | [Dropzone Launcher](dropzone-launcher/) | Launch Dropzone folders, apps, and actions |
 | [Finder Ghostty](finder-ghostty/) | Open current Finder path in Ghostty |
 | [GitHub Repos](github-repos/) | Search and open GitHub repositories |
+| [Action Launcher](action-launcher/) | Browse and launch actions from all your workflows |
 
 ## Themes
 
