@@ -24,6 +24,7 @@ jobs:
 
     - name: Create Release
       run: |
-        gh release create latest **/*.alfredworkflow --title "Latest"
+        gh release create latest **/*.alfredworkflow --title "Latest" \
+          --notes "**Full Changelog**: https://github.com/laurensent/alfred-workflows/commits/latest"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
