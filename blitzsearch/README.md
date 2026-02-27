@@ -1,6 +1,6 @@
 # BlitzSearch
 
-Real-time fuzzy file/folder search for Alfred using fd + fzf.
+Real-time fuzzy file/folder search for Alfred using fd.
 
 ## Features
 
@@ -10,6 +10,16 @@ Real-time fuzzy file/folder search for Alfred using fd + fzf.
 - Smart ranking prioritizes exact and prefix matches
 - Search history with auto-cleanup
 - Alfred Fallback Search support
+
+## Requirements
+
+- [fd](https://github.com/sharkdp/fd) - Fast file finder
+- [python-Levenshtein](https://pypi.org/project/python-Levenshtein/) (optional) - Faster fuzzy matching
+
+```bash
+brew install fd
+pip3 install python-Levenshtein  # optional
+```
 
 ## Usage
 
@@ -59,18 +69,6 @@ fs plist #library          # Search in Library (overrides exclude)
 | Exclude Patterns | (see workflow) | Patterns to exclude (semicolon separated, supports glob) |
 | Include Hidden | `off` | Include hidden files by default |
 
-## Requirements
-
-- Alfred 5 with Powerpack
-- [fd](https://github.com/sharkdp/fd) - Fast file finder
-- [fzf](https://github.com/junegunn/fzf) - Fuzzy finder
-- [python-Levenshtein](https://pypi.org/project/python-Levenshtein/) (optional) - Faster fuzzy matching
-
-```bash
-brew install fd fzf
-pip3 install python-Levenshtein  # optional
-```
-
 ## License
 
-MIT License - see [LICENSE](../LICENSE) file
+MIT

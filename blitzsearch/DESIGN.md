@@ -2,7 +2,7 @@
 
 ## Overview
 
-BlitzSearch is a high-performance fuzzy file/folder search workflow for Alfred, using `fd` + `fzf` with custom ranking algorithms and typo tolerance.
+BlitzSearch is a high-performance fuzzy file/folder search workflow for Alfred, using `fd` with custom ranking algorithms and typo tolerance.
 
 ## Architecture
 
@@ -11,39 +11,66 @@ User Input
     |
     v
 +-------------------+
-| Parse #folder     |  Extract folder filters (AND logic)
-| filters           |
+| Parse @options    |  Extract @h/@f/@d options
+| and #folder       |  Extract folder filters (AND logic)
 +-------------------+
     |
     v
 +-------------------+
-| fd (file finder)  |  Scan directories, exclude Library/.git/etc
+| History search    |  Instant: fuzzy match against ~100 entries
+| (threshold=5)     |
++-------------------+
+    |
+    v
++-------------------+     Tier 1: fd -i <pattern>
+| fd (file finder)  |     Filters at filesystem level
+| Tiered search     |     (not full scan)
++-------------------+
+    |
+    |  [if < 5 results AND max_score < 1500]
+    v
++-------------------+     Tier 2: fd -i <subsequence>
+| fd subsequence    |     e.g. "cfg" -> c.*f.*g
++-------------------+
+    |
+    |  [if still 0 results AND threshold >= 3]
+    v
++-------------------+     Tier 3: fd . (reduced depth)
+| Levenshtein       |     + Levenshtein for typo correction
+| fallback          |
 +-------------------+
     |
     v
 +-------------------+
-| Folder filtering  |  Apply #folder filters (case-insensitive)
-+-------------------+
-    |
-    v
-+-------------------+
-| fzf --filter      |  Initial fuzzy filtering on filenames
-+-------------------+
-    |
-    v
-+-------------------+
-| Python ranking    |  Re-rank with custom fuzzy_score()
-+-------------------+
-    |
-    v
-+-------------------+
-| Fuzzy fallback    |  Typo tolerance (when threshold > 3)
-| (Levenshtein)     |
+| Merge & rank      |  History first, then search results
 +-------------------+
     |
     v
 Alfred JSON Output
 ```
+
+## Tiered Search Strategy
+
+### Tier 1: fd Pattern Match (fastest)
+
+Passes the search term directly to `fd -i` as a regex pattern, filtering at the filesystem level instead of listing all files.
+
+- Single word: `fd -i search` (substring match)
+- Multi-word: `fd -i 'blitz.*search'` (words joined with `.*`)
+- Special characters are escaped with `re.escape()` for safe regex
+
+### Tier 2: Subsequence Pattern
+
+Triggered only when Tier 1 returns < 5 results AND max_score < 1500 (no good quality match). Generates a character-by-character subsequence regex.
+
+- `cfg` -> `fd -i 'c.*f.*g'` (matches `config`, `CFGPT_2.js`, etc.)
+- Skipped when Tier 1 already has high-quality matches (max_score >= 1500)
+
+### Tier 3: Levenshtein Fallback
+
+Triggered only when Tiers 1+2 return zero results AND `fuzzy_threshold >= 3`. Runs `fd .` with reduced depth (min of configured depth and 5) to keep it fast, then applies Levenshtein distance filtering.
+
+- `serach` -> finds `search` via Levenshtein similarity
 
 ## Fuzzy Scoring Algorithm
 
@@ -98,13 +125,25 @@ Prevents false positives from sparse character matches in long filenames.
 | `rdme` -> `readme` | 67% | X | O | O | O | O |
 | `laurensent` -> Docker book | 15% | X | X | X | X | X |
 
-**Typo Fallback**: Only enabled at threshold > 3 (to maintain speed at lower thresholds).
-
 ## Performance Optimizations
 
-### 1. Length-based Pre-filtering
+### 1. Filesystem-level Filtering
 
-**Problem**: Calculating Levenshtein distance for 50,000+ files is O(n * m * k) where k is file count.
+**Problem**: Previous approach used `fd .` to list all files, then piped everything to `fzf --filter`. For large directories this scanned 100k+ files unnecessarily.
+
+**Solution**: Pass the search pattern directly to `fd -i <pattern>`, letting fd filter at the filesystem level. This dramatically reduces output and eliminates the fzf subprocess.
+
+**Benchmarks** (searching `~` with depth 8):
+
+| Query | Old (`fd .` + fzf) | New (`fd <pattern>`) | Speedup |
+|-------|-------------------|---------------------|---------|
+| `search` | 0.66s | 0.22s | 3.0x |
+| `readme` | 0.54s | 0.33s | 1.6x |
+| `serach` (typo) | 1.13s | 0.40s | 2.8x |
+
+### 2. Length-based Pre-filtering
+
+**Problem**: Calculating Levenshtein distance for all files is O(n * m * k) where k is file count.
 
 **Solution**: Use mathematical property of Levenshtein distance:
 ```
@@ -126,7 +165,7 @@ if name_len < min_name_len or name_len > max_name_len:
 
 **Result**: Filters out ~90% of files before Levenshtein calculation.
 
-### 2. C Extension for Levenshtein
+### 3. C Extension for Levenshtein
 
 **Problem**: Pure Python Levenshtein is slow for string comparison.
 
@@ -145,27 +184,9 @@ except ImportError:
 pip install python-Levenshtein
 ```
 
-### 3. Two-stage Filtering
-
-**Stage 1**: fzf for initial filtering
-- Fast C implementation
-- Reduces candidate set from 50,000 to ~1,000
-
-**Stage 2**: Python for precise ranking
-- Custom scoring algorithm
-- Better relevance than fzf alone
-
-### Performance Benchmarks
-
-| Optimization | Time | Improvement |
-|--------------|------|-------------|
-| No optimization | 4-5s | - |
-| Length pre-filtering | 0.39s | ~10x |
-| + C extension | 0.15s | ~25x |
-
 ## History-based Fuzzy Search
 
-History records are searched **before** the main fd+fzf search with maximum tolerance:
+History records are searched **before** the main fd search with maximum tolerance:
 
 ```python
 # Always use threshold=5 for history (instant due to small size)
@@ -178,20 +199,6 @@ score = fuzzy_score(filename, search_term, threshold=5)
 - History results are prioritized (displayed first)
 
 **Storage**: `~/Library/Application Support/Alfred/Workflow Data/com.laurenwong.blitzsearch/history.json`
-
-## Fallback Strategy
-
-Typo-tolerant fallback is triggered when:
-1. `max_score < 1500` (no exact/prefix/contains match)
-2. `fuzzy_threshold > 3` (user wants typo tolerance)
-
-```python
-if max_score < 1500 and fuzzy_threshold > 3:
-    fallback_results = fuzzy_fallback(fd_results, search_term, ...)
-    # Merge with existing results, avoiding duplicates
-```
-
-**Design rationale**: History provides typo tolerance for frequently used files at all threshold levels. Full typo fallback is only enabled at high tolerance settings to avoid slowing down searches.
 
 ## Folder Filter Syntax
 
@@ -232,5 +239,4 @@ BlitzSearch/
 ## Dependencies
 
 - **fd**: `brew install fd` - Fast file finder
-- **fzf**: `brew install fzf` - Fuzzy finder
 - **python-Levenshtein** (optional): `pip install python-Levenshtein` - C extension for faster fuzzy matching
