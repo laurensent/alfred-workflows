@@ -202,15 +202,15 @@ score = fuzzy_score(filename, search_term, threshold=5)
 
 ## Folder Filter Syntax
 
-Use `#folder` to filter by directory path with fuzzy matching (AND logic for multiple filters):
+Use `#folder` to filter by directory path with substring matching (AND logic for multiple filters).
+Folder filters are pushed into fd using `--full-path` for filesystem-level filtering (no Python post-filtering).
 
 ```
 fs leetcode #inbox          # Search "leetcode" in paths containing "inbox"
-fs config #dotfiles #vim    # Must match both "dotfiles" AND "vim" in path
-fs algo #donwloads          # Typo tolerance: matches "Downloads" folder
+fs config #dotfiles #vim    # Must match both "dotfiles" AND "vim" in path (order-independent)
 ```
 
-Folder filters use the same fuzzy matching as filename search (controlled by `fuzzy_threshold`).
+Folder filters use case-insensitive substring matching for precision and performance.
 
 ## Configuration Options
 
